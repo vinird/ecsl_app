@@ -1,0 +1,105 @@
+<!--
+  Generated template for the Schedule page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="sl_aqua">
+    <ion-title>Agenda</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content (swipe)="swipeEvent($event)">
+	<div color="sl_aqua">
+	  <ion-segment [(ngModel)]="switchEvent">
+	    <ion-segment-button value="all" (tap)="allEvents()">
+	      Todos los eventos
+	    </ion-segment-button>
+	    <ion-segment-button value="favorities" (tap)="getLocalEvents()">
+	      Favoritos
+	    </ion-segment-button>
+	  </ion-segment>
+	</div>
+<div [ngSwitch]="switchEvent">
+	<div *ngSwitchCase="'all'" ngSelected="selected">
+	  	<ion-searchbar [(ngModel)]="searchTerm" placeholder="Buscar"></ion-searchbar>
+		<ion-list *ngFor="let event of events | orderBy:'start_time':true | filter:{'title': searchTerm}" class="margin-left">
+
+				
+		    <ion-item-group >
+		      <ion-item-divider sticky *ngIf="evalDate( event.start_time )">
+		        <ion-label>
+		          <!-- {{group.time}} -->
+		          {{ event.start_time | date }}
+		          <strong>{{ event._time }} <ion-icon name="star" color="sl_green" *ngIf="event.is_highlight == 1"></ion-icon></strong>
+		        </ion-label>
+		      </ion-item-divider>
+
+		      <ion-item-sliding class="type_{{ event.track_id }}">
+
+		        <button ion-item (tap)="goToEventDetail(event)">
+		          <p><strong>{{ event.title }}</strong></p>
+		          <!-- <p>{{ event.description }}</p> -->
+		          <!-- <p>{{ event.track_id }}</p> -->
+		          <p><ion-icon name="contact"></ion-icon> {{ event.speaker_names }}  / {{ getEventType(event.event_type_id) }}</p>
+		        </button>
+
+		        <!-- <ion-item-options>
+		          <button ion-button color="favorite" (click)="addFavorite()" >
+		            Favorite
+		          </button>
+		          <button ion-button color="danger" (click)="removeFavorite()" >
+		            Remove
+		          </button>
+		        </ion-item-options> -->
+
+		      </ion-item-sliding>
+		    </ion-item-group>
+		  </ion-list>
+		</div>
+	
+	<div *ngSwitchCase="'favorities'" >
+		<ion-searchbar [(ngModel)]="searchTerm" placeholder="Buscar"></ion-searchbar>
+		<div text-center *ngIf=" localEvents.length < 1 " padding >
+			<strong >No hay eventos favoritos</strong>
+		</div>
+		<ion-list *ngFor="let event of localEvents | orderBy:'start_time':true | filter:{'title': searchTerm}" class="margin-left">
+		    <ion-item-group >
+		      <ion-item-divider sticky *ngIf="evalDate( event.start_time )">
+		        <ion-label>
+		          <!-- {{group.time}} -->
+		          {{ event.start_time | date }}
+		          <strong>{{ event._time }} <ion-icon name="star" color="sl_green" *ngIf="event.is_highlight == 1"></ion-icon></strong>
+		        </ion-label>
+		      </ion-item-divider>
+
+		      <ion-item-sliding class="type_{{ event.track_id }}">
+
+		        <button ion-item (tap)="goToEventDetail(event)">
+		          <p><strong>{{ event.title }}</strong></p>
+		          <!-- <p>{{ event.description }}</p> -->
+		          <!-- <p>{{ event.track_id }}</p> -->
+		          <p><ion-icon name="contact"></ion-icon> {{ event.speaker_names }}  / {{ getEventType(event.event_type_id) }}</p>
+		        </button>
+
+		        <!-- <ion-item-options>
+		          <button ion-button color="favorite" (click)="addFavorite()" >
+		            Favorite
+		          </button>
+		          <button ion-button color="danger" (click)="removeFavorite()" >
+		            Remove
+		          </button>
+		        </ion-item-options> -->
+
+		      </ion-item-sliding>
+		    </ion-item-group>
+		  </ion-list>
+		<div text-center>
+			<button ion-button clear small round (tap)="getLocalEvents()"><ion-icon name="refresh"></ion-icon></button>
+		</div>
+	</div>
+</div>
+</ion-content>

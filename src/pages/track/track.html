@@ -1,0 +1,37 @@
+<!--
+  Generated template for the Track page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ejes Temáticos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="type_{{ track.id }}">
+	<ion-card >
+	  <ion-card-header>
+	  </ion-card-header>
+	  <ion-card-content>
+	    <p text-center><strong>{{ track.name }}</strong></p>
+      <button ion-button outline item-right icon-left block small round (tap)="getEventList(track)" >
+        <ion-icon name="open"></ion-icon>
+        Ver eventos
+      </button>
+	    <hr>
+	  	<ion-row *ngFor="let item of descriptions">
+	  		<ion-col col-1 class="type__{{ track.id }}">
+	  			<ion-icon name="arrow-round-forward"></ion-icon>
+	  		</ion-col>
+	  		<ion-col col-11>
+	    		{{ item }}
+	  		</ion-col>
+	  	</ion-row>
+	  </ion-card-content>
+	</ion-card>
+</ion-content>
