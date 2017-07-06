@@ -22,7 +22,7 @@
 	      Favoritos
 	    </ion-segment-button>
 	  </ion-segment>
-	</div>
+	</div> 
 <div [ngSwitch]="switchEvent">
 	<div *ngSwitchCase="'all'" ngSelected="selected">
 	  	<ion-searchbar [(ngModel)]="searchTerm" placeholder="Buscar"></ion-searchbar>
@@ -44,7 +44,7 @@
 		          <p><strong>{{ event.title }}</strong></p>
 		          <!-- <p>{{ event.description }}</p> -->
 		          <!-- <p>{{ event.track_id }}</p> -->
-		          <p><ion-icon name="contact"></ion-icon> {{ event.speaker_names }}  / {{ getEventType(event.event_type_id) }}</p>
+		          <p><ion-icon name="contact"></ion-icon> {{ event.speaker_names }}  / {{ event._event_type_name }}</p>
 		        </button>
 
 		        <!-- <ion-item-options>
@@ -82,7 +82,7 @@
 		          <p><strong>{{ event.title }}</strong></p>
 		          <!-- <p>{{ event.description }}</p> -->
 		          <!-- <p>{{ event.track_id }}</p> -->
-		          <p><ion-icon name="contact"></ion-icon> {{ event.speaker_names }}  / {{ getEventType(event.event_type_id) }}</p>
+		          <p><ion-icon name="contact"></ion-icon> {{ event.speaker_names }}  / {{ event._event_type_name }}</p>
 		        </button>
 
 		        <!-- <ion-item-options>

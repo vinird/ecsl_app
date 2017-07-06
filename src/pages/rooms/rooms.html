@@ -22,9 +22,11 @@
 </ion-card>
 
   <ion-card ion-item *ngFor="let room of rooms">
-
-
-    
+    <ion-row>
+      <ion-col >
+        <h3>{{ room.name }}</h3>
+      </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
         <ion-row>
@@ -43,7 +45,7 @@
       <ion-col class="flex-col">
         <button ion-button icon-left outline round (tap)="roomSelected(room)" small>
           <ion-icon name='open'></ion-icon>
-          Sala {{ room.id }}
+            Ver eventos
         </button>
       </ion-col>
 

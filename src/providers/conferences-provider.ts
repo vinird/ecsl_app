@@ -32,7 +32,7 @@ export class ConferencesProvider {
   // Obtiene los datos del API
   getRemoteConferences()
   {
-  	return this.http.get('https://ecsl2017.softwarelibre.ca/registro/api/v1/conferences/ECSL2017/')
+  	return this.http.get('https://ecsl2017.softwarelibre.ca/registro/api/agenda.json')
   	// return this.http.get("../assets/data/data.json")
   	.map(res => res.json());
   }
@@ -51,14 +51,14 @@ export class ConferencesProvider {
   // Obtinene todos los eventos y agregar el valor _time a los eventos
   getEvents()
   {
-    this.eventsLenght = 0 
+    this.eventsLenght = 0;
   	var events = [];
   	for (var i = 0; i < this.data.rooms.length; i++) 
   	{
   		if(this.data.rooms[i].events != undefined)
   		{
   			for (var a = 0; a < this.data.rooms[i].events.length; a++) 
-  			{
+  			  {        
   				if(this.data.rooms[i].events[a] != undefined)
   				{
             var time = this.data.rooms[i].events[a].start_time;
@@ -67,6 +67,7 @@ export class ConferencesProvider {
             // console.log(time)
             this.data.rooms[i].events[a]._time = time;
             this.data.rooms[i].events[a]._room = i;
+            this.data.rooms[i].events[a]._event_type_name = this.getEventTypeName(this.data.rooms[i].events[a].event_type_id);
   					events.push(this.data.rooms[i].events[a]);
             this.eventsLenght = this.eventsLenght + 1;
   				}
@@ -76,6 +77,14 @@ export class ConferencesProvider {
   	return events;
   }
 
+  private getEventTypeName(id) 
+  {
+    for (let i = 0; i < this.data.conferences[0].event_types.length; i++ ) {
+      if (this.data.conferences[0].event_types[i].id == id ) {
+        return this.data.conferences[0].event_types[i].title;
+      }
+    }
+  }
   // Obtiene el total de eventos
   getEventsLenght()
   {
@@ -99,9 +108,9 @@ export class ConferencesProvider {
   getTracks()
   {
     var tracks = [];
-    for (var i = 0; i < this.data.tracks.length; i++) 
+    for (var i = 0; i < this.data.conferences[0].tracks.length; i++) 
     {
-      tracks.push(this.data.tracks[i]);
+      tracks.push(this.data.conferences[0].tracks[i]);
     }
     return tracks;
   }
@@ -121,27 +130,28 @@ export class ConferencesProvider {
   // Obtiene los tipos de eventos
   getEventTypes()
   {
-    return this.data.event_types;
+    return this.data.conferences[0].event_types;
   }
 
   // Obtiene un tipo de evento
-  getEventType(typeId)
-  {
-    var eventType = null;
-    for (var i = 0; i < this.data.event_types.length; i++) 
-    {
-      if(this.data.event_types[i].id == typeId) {
-        eventType = this.data.event_types[i];
-        return eventType;
-      }
-    }
-    return eventType;
-  }
+  // getEventType(typeId)
+  // {
+  //   var eventType = null;
+  //     console.log(this.data.event_types)
+  //   for (var i = 0; i < this.data.event_types.length; i++) 
+  //   {
+  //     if(this.data.event_types[i].id == typeId) {
+  //       eventType = this.data.event_types[i];
+  //       return eventType;
+  //     }
+  //   }
+  //   return eventType;
+  // }
 
 
   setData(data)
   {
-    this.data = data.conferences[0];
+    this.data = data;
   }
 
   getData()

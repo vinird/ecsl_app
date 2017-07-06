@@ -15,7 +15,7 @@ import { Storage } from '@ionic/storage';
 @Component({
   selector: 'page-schedule',
   templateUrl: 'schedule.html',
-})
+}) 
 export class SchedulePage {
 
 	events : any;
@@ -34,7 +34,6 @@ export class SchedulePage {
   ionViewDidLoad() {}
 
   swipeEvent(e){
-    // console.log(e)
     if (e.velocity < -0 ) {
       this.switchEvent = "favorities";
       this.getLocalEvents();
@@ -86,9 +85,10 @@ export class SchedulePage {
     }
   }
 
-  getEventType(id)
-  {
-    return this.conferencesProvider.getEventType(id).title;
-  }
+  // getEventType(id)
+  // {
+  //   //return this.conferencesProvider.getEventType(id).title;
+  //   return this.conferencesProvider.getEventType(id);
+  // }
 
 }

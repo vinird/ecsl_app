@@ -8,16 +8,16 @@
   <p text-center>
     <img class="ecsl_icon" src="assets/img/cropped-photo_.jpg">
   </p>
-  <h4 text-center color="sl_text">{{ data.short_title }}</h4>
-  <h3 text-center color="sl_text_gray">{{ data.title }}</h3>
+  <h4 text-center color="sl_text">{{ data.conferences[0].short_title }}</h4>
+  <h3 text-center color="sl_text_gray">{{ data.conferences[0].title }}</h3>
   
   <ion-card>
     <ion-card-header>
-      <p color="sl_text_gray"><ion-icon name="calendar" margin-right></ion-icon> Fecha <strong>{{ data.start_date | date : 'MMM-d' }} / {{ data.end_date | date : 'MMM-d' }}</strong></p>
+      <p color="sl_text_gray"><ion-icon name="calendar" margin-right></ion-icon> Fecha <strong>{{ data.conferences[0].start_date | date : 'MMM-d' }} / {{ data.conferences[0].end_date | date : 'MMM-d' }}</strong></p>
     </ion-card-header>
     <ion-card-content>
-      <!-- Add card content here! -->
-      <p center text-center color="sl_text_gray">{{ data.description }}</p>
+      <!-- Add card content here! --> 
+      <p center text-center color="sl_text_gray">{{ data.conferences[0].description }}</p>
     </ion-card-content>
   </ion-card>
   <!-- <ion-list>

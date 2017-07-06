@@ -27,7 +27,7 @@ export class EventPage {
   constructor( public navCtrl: NavController, public navParams: NavParams, public conferencesProvider : ConferencesProvider, public storage: Storage, public toastCtrl: ToastController ) 
   {
     this.event = this.conferencesProvider.getCurrentEvent();
-    this.eventType = this.conferencesProvider.getEventType(this.event.event_type_id);
+    this.eventType = this.event._event_type_name;
     this.getLocalEvents();
   }
 

@@ -36,7 +36,7 @@ export class StartPage {
 
 
   ionViewDidLoad() {}
-
+ 
   public checkLocal(){
     this.storage.get('data').then((val) => {
       if(val != null){
