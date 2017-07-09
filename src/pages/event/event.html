@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Evento</ion-title>
+    <ion-title>{{ event._event_type_name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -31,9 +31,9 @@
 <div class="type_{{ event.track_id }}">
   <ion-card>
   <ion-item>
-    <p><strong *ngIf=" checkIfExist(event)" class="color_primary"><ion-icon name="star"></ion-icon> </strong> {{ event.start_time | date : 'MMM-d' }} / {{ eventType.title }} / Sala {{ event._room + 1 }} <ion-icon name="flash" color="primary" *ngIf="event.is_highlight == 1"></ion-icon></p>
+    <p><strong *ngIf=" checkIfExist(event)" class="color_primary"><ion-icon name="star"></ion-icon> </strong> {{ event.start_time | date : 'MMM-d' }} / {{ event._room }} <ion-icon name="flash" color="primary" *ngIf="event.is_highlight == 1"></ion-icon></p>
   <hr>
-  </ion-item>
+  </ion-item> 
   <ion-card-content center text-center>
     <h2><strong>{{ event.title }} </strong></h2> 
   </ion-card-content>
@@ -59,7 +59,7 @@
     </ion-col>
     <ion-col col-3 center text-center>
       <button ion-button clear small class="clear_color">
-        <div><ion-icon name="timer"></ion-icon> {{ eventType.length }}m</div>
+        <div><ion-icon name="timer"></ion-icon> {{ event._event_type_duration }}m</div>
       </button>
     </ion-col>
   </ion-row>

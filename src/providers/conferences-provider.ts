@@ -62,12 +62,13 @@ export class ConferencesProvider {
   				if(this.data.rooms[i].events[a] != undefined)
   				{
             var time = this.data.rooms[i].events[a].start_time;
-            time = time.slice(11, 16);
+            time = time.slice(11, 17);
             // var time = new Date(this.data.rooms[i].events[a].start_time);
-            // console.log(time)
             this.data.rooms[i].events[a]._time = time;
-            this.data.rooms[i].events[a]._room = i;
-            this.data.rooms[i].events[a]._event_type_name = this.getEventTypeName(this.data.rooms[i].events[a].event_type_id);
+            this.data.rooms[i].events[a]._room = this.data.rooms[i].name;
+            let _event_type = this.getEventTypeName(this.data.rooms[i].events[a].event_type_id)
+            this.data.rooms[i].events[a]._event_type_name = _event_type.title;
+            this.data.rooms[i].events[a]._event_type_duration = _event_type.length;
   					events.push(this.data.rooms[i].events[a]);
             this.eventsLenght = this.eventsLenght + 1;
   				}
@@ -77,11 +78,20 @@ export class ConferencesProvider {
   	return events;
   }
 
+  // private getRoom (id) {
+  //   for (var i = 0; i < this.data.rooms.length; i++) 
+  //   {
+  //     if (this.data.rooms[i].id == id) {
+  //         return this.data.rooms[i];
+  //     }
+  //   }
+  // }
+
   private getEventTypeName(id) 
   {
     for (let i = 0; i < this.data.conferences[0].event_types.length; i++ ) {
       if (this.data.conferences[0].event_types[i].id == id ) {
-        return this.data.conferences[0].event_types[i].title;
+        return this.data.conferences[0].event_types[i];
       }
     }
   }
