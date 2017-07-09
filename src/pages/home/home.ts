@@ -4,6 +4,8 @@ import { LoadingController } from 'ionic-angular';
 
 import { ConferencesProvider } from '../../providers/conferences-provider';
 
+import { MapPage } from '../map/map';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -23,5 +25,9 @@ export class HomePage {
   }
 
   ionViewDidLoad() {}
+
+  openMap() {
+    this.navCtrl.push(MapPage);
+  }
 
 }

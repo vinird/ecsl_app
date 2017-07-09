@@ -20,6 +20,8 @@ import { TracksPage } from '../pages/tracks/tracks';
 import { TrackPage } from '../pages/track/track';
 import { EventTypesPage } from '../pages/event-types/event-types';
 import { EventTypePage } from '../pages/event-type/event-type';
+import { MapPage } from '../pages/map/map';
+import { MapPageModule } from '../pages/map/map.module';
 
 
 // Native
@@ -70,6 +72,7 @@ import { IonicStorageModule } from '@ionic/storage';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpModule,
+    MapPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -88,7 +91,8 @@ import { IonicStorageModule } from '@ionic/storage';
     TracksPage,
     TrackPage,
     EventTypesPage,
-    EventTypePage
+    EventTypePage,
+    MapPage
   ],
   providers: [
     StatusBar,

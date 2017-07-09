@@ -13,7 +13,15 @@
   
   <ion-card>
     <ion-card-header>
-      <p color="sl_text_gray"><ion-icon name="calendar" margin-right></ion-icon> Fecha <strong>{{ data.conferences[0].start_date | date : 'MMM-d' }} / {{ data.conferences[0].end_date | date : 'MMM-d' }}</strong></p>
+      <p color="sl_text_gray">
+        <ion-icon name="calendar" margin-right></ion-icon> 
+          Fecha 
+            <strong>{{ data.conferences[0].start_date | date : 'MMM-d' }} / {{ data.conferences[0].end_date | date : 'MMM-d' }}</strong>
+        </p>
+        <p color="sl_text_gray">
+        <ion-icon name="map" margin-right></ion-icon> 
+            <strong> <a (tap)="openMap()">Ver mapa</a> </strong>
+        </p>
     </ion-card-header>
     <ion-card-content>
       <!-- Add card content here! --> 
