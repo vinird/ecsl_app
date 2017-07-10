@@ -43,6 +43,8 @@ import { HttpModule } from '@angular/http';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 @NgModule({
   declarations: [
@@ -98,7 +100,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConferencesProvider
+    ConferencesProvider,
+    PhotoViewer
   ]
 })
 export class AppModule {}

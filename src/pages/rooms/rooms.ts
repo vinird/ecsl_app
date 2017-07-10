@@ -6,6 +6,8 @@ import { ConferencesProvider } from '../../providers/conferences-provider';
 
 import { EventsPage } from '../events/events';
 
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 /*
   Generated class for the Rooms page.
@@ -22,7 +24,7 @@ export class RoomsPage {
 	rooms: any;
   public totalEvents = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public conferencesProvider: ConferencesProvider, public toastCtrl: ToastController) 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public conferencesProvider: ConferencesProvider, public toastCtrl: ToastController, private photoViewer: PhotoViewer) 
   {
     this.totalEvents = this.conferencesProvider.getEventsLenght();
   }
@@ -49,6 +51,11 @@ export class RoomsPage {
       duration: 3000
     });
     toast.present();
+  }
+
+  openMapImage(url, title) {
+    let baseUrl = "https://ecsl2017.softwarelibre.ca";
+    this.photoViewer.show(baseUrl + url, title, {share: true});
   }
 
 }

@@ -41,6 +41,12 @@
             <div> {{ room.size }} CAPACIDAD</div>
           </button>   
         </ion-row>
+        <ion-row>
+          <button ion-button icon-left clear small (tap)="openMapImage( room.map_url, room.name)">
+            <ion-icon name="locate"></ion-icon>
+            Ubicación
+          </button>   
+        </ion-row>
       </ion-col>
       <ion-col class="flex-col">
         <button ion-button icon-left outline round (tap)="roomSelected(room)" small>
